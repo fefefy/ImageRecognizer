@@ -13,6 +13,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Bonjour !" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/Photo_button"
+        android:text="Prendre une photo !" />
+
+    <Button
+        android:text="Récupérer une photo depuis ma librairie !"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Photo_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp"
+        android:id="@+id/Library_Button" />
 
 </RelativeLayout>
