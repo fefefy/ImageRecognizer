@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
         android:text="Vous etes sur le layout Libray"
         android:textSize="16pt"
-        android:layout_width="match_parent"
+        android:layout_weight="0.11" />
+
+    <ImageView
+        android:id="@+id/Library_ImageView"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/LibraryTextView" />
+        android:layout_weight="1" >
+    </ImageView>
+
+    <Button
+        android:id="@+id/Library_LoadButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="loadImagefromGallery"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Ouvrir Galerie Photo" >
+    </Button>
+
 </LinearLayout>
