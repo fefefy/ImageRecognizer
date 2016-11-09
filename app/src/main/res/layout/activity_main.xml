@@ -8,31 +8,29 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="projetstl.com.imagerecognizer.Gallery">
+    tools:context="projetstl.com.imagerecognizer.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bonjour !" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:id="@+id/Photo_button"
         android:text="Prendre une photo !"
-        android:layout_below="@+id/Gallery_Button"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:id="@+id/Pictures_ImageView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:layout_below="@+id/Photo_button">
-    </ImageView>
+        android:onClick="process"/>
 
     <Button
         android:text="Récupérer une photo depuis ma librairie !"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Gallery_Button"
-                android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/Photo_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp"
+        android:id="@+id/Library_Button" />
 
 </RelativeLayout>
