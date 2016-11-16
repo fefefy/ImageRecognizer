@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
-
-    <TextView
-        android:text="Vous etes sur le layout photo"
-        android:textSize="16pt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
-
-    <SurfaceView
-        android:layout_width="match_parent"
-        android:id="@+id/photo_surfaceView"
-        android:layout_height="344dp"
-        android:layout_weight="0.76" />
+    android:layout_height="match_parent">
 
     <Button
-        android:text="Capturer !"
+        android:text="Ouvrir la caméra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/capture_Button"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:background="@color/colorPrimary"/>
-
+        android:id="@+id/Launch_camera"
+        android:elevation="0dp"
+        android:onClick="process"/>
 </LinearLayout>
