@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.MainThread;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
@@ -28,13 +29,10 @@ public class MainActivity extends Activity {
 
         Button galleryButton = (Button)findViewById(R.id.Gallery_Button);
         galleryButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Log.i("Gallery button","User clicked the gallery Button");
-
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                        MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, LOAD_IMAGE);
-
+                Intent intent = new Intent(MainActivity.this,Gallery.class);
+                startActivity(intent);
             }
         });
 
@@ -44,43 +42,10 @@ public class MainActivity extends Activity {
                 Log.i("Photo Button","User clicked the photo Button");
                 Intent intent = new Intent(MainActivity.this, Photo.class);
                 startActivity(intent);
-
             }
             });
     }
 
-    protected void onActivityResult ( int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        try {
-            // When an Image is picked
-            if (requestCode == LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
 
-                // Get the Image from data
-                Uri selectedImage = data.getData();
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                // Get the cursor
-                Cursor cursor = getContentResolver().query(selectedImage,
-                        filePathColumn, null, null, null);
-                // Move to first row
-                cursor.moveToFirst();
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                ImageString = cursor.getString(columnIndex);
-                cursor.close();
-                ImageView imgView = (ImageView) findViewById(R.id.Pictures_ImageView);
-
-                //requests permission to read a files from user's device
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_PERMISSION);
-
-                // Set the Image in ImageView after decoding the String
-                imgView.setImageBitmap(BitmapFactory.decodeFile(ImageString));
-
-            } else {
-                Toast.makeText(this, "Vous n'avez pas selectionné d'images !", Toast.LENGTH_LONG).show();
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "Problème détecté", Toast.LENGTH_LONG).show();
-        }
-    }
 }
 
