@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
 public class  Gallery extends Activity {
 
     private static int LOAD_IMAGE = 1;

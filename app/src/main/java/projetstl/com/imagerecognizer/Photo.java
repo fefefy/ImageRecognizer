@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import java.io.File;
 
-
 public class Photo extends Activity {
 
     private File imageFile;
