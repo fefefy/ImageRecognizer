@@ -1,6 +1,5 @@
 package projetstl.com.imagerecognizer;
 
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,8 +12,6 @@ import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import static android.app.Activity.RESULT_OK;
 
 
 public class  Gallery extends Activity {
