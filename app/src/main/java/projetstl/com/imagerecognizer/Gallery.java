@@ -12,9 +12,6 @@ import org.bytedeco.javacpp.opencv_features2d.DescriptorExtractor;
 import org.bytedeco.javacpp.opencv_features2d.DrawMatchesFlags;
 import org.bytedeco.javacpp.opencv_features2d.KeyPoint;
 import org.bytedeco.javacpp.opencv_nonfree.SIFT;
-import org.bytedeco.javacv.CanvasFrame;
-import org.bytedeco.javacv.FrameConverter;
-import org.bytedeco.javacv.OpenCVFrameConverter.ToMat;
 
 import static org.bytedeco.javacpp.opencv_features2d.drawKeypoints;
 import static org.bytedeco.javacpp.opencv_highgui.imread;
