@@ -17,7 +17,6 @@ import static org.bytedeco.javacpp.opencv_features2d.drawKeypoints;
 import static org.bytedeco.javacpp.opencv_highgui.imread;
 import static org.bytedeco.javacpp.opencv_highgui.waitKey;
 
-
 public class  Gallery extends Activity {
 
     private static int LOAD_IMAGE = 1;
