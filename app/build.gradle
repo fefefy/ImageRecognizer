@@ -26,14 +26,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.0'
     testCompile 'junit:junit:4.12'
-    compile files('libs/javacv-0.11-bin/javacv-bin/artoolkitplus.jar')
-    compile files('libs/javacv-0.11-bin/javacv-bin/ffmpeg.jar')
     compile files('libs/javacv-0.11-bin/javacv-bin/opencv.jar')
-    compile files('libs/javacv-0.11-bin/javacv-bin/flycapture.jar')
-    compile files('libs/javacv-0.11-bin/javacv-bin/videoinput.jar')
-    compile files('libs/javacv-0.11-bin/javacv-bin/libfreenect.jar')
     compile files('libs/javacv-0.11-bin/javacv-bin/javacpp.jar')
     compile files('libs/javacv-0.11-bin/javacv-bin/javacv.jar')
-    compile files('libs/javacv-0.11-bin/javacv-bin/flandmark.jar')
-    compile files('libs/javacv-0.11-bin/javacv-bin/libdc1394.jar')
 }
