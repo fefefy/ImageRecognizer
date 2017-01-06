@@ -1,9 +1,11 @@
 package projetstl.com.imagerecognizer;
 
-        import android.Manifest;
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,9 +16,31 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.opencv.android.Utils;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfKeyPoint;
+import org.opencv.features2d.FeatureDetector;
+import org.opencv.features2d.Features2d;
+import org.opencv.imgproc.Imgproc;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.security.Key;
+
+import static android.R.attr.bitmap;
+import static android.R.attr.start;
 
 public class MainActivity extends Activity {
+
+    static {
+        System.loadLibrary("opencv_java");
+        System.loadLibrary("nonfree");
+    }
+
+    private ImageView imageView;
+    private Bitmap inputImage;
+    private FeatureDetector detector = FeatureDetector.create(FeatureDetector.SIFT);
 
     private File imageFile;
     private String CurrentPhotoPath;
@@ -35,11 +59,12 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         imageFile = new File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                "ImageRecognizer.jpg");
+                "LogoRecognizer.jpg");
         Uri temp_uri = Uri.fromFile(imageFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, temp_uri);
         intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
         startActivityForResult(intent, 0);
+        System.out.println("Appareil Photo ouvert");
     }
 
     //Function to Add taken image to gallery
@@ -51,14 +76,12 @@ public class MainActivity extends Activity {
         this.sendBroadcast(mediaScanIntent);
     }
 
-    public void loadImageFromGallery(View view) {
-
-        ImageView imgView = (ImageView) findViewById(R.id.Pictures_ImageView);
+    public void LoadImageFromGallery(View view) {
 
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, LOAD_IMAGE);
         System.out.println("Gallery ouverte");
-        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -121,13 +144,33 @@ public class MainActivity extends Activity {
 
             } else if (requestCode != LOAD_IMAGE && resultCode == RESULT_OK){
                 Toast.makeText(this, "Voici votre photo", Toast.LENGTH_LONG).show();
-                    }
-                        else{
+            }
+            else{
                 Toast.makeText(this, "Vous n'avez pas selectionné d'images !", Toast.LENGTH_LONG).show();
-                 }
+            }
         } catch (Exception e) {
             Toast.makeText(this, "Problème détecté", Toast.LENGTH_LONG).show();
         }
+
+
+    }
+
+    public void Analyse(View view) {
+
+        setContentView(R.layout.keypointmatching);
+        imageView = (ImageView) this.findViewById(R.id.Analyse_ImageView);
+        inputImage = BitmapFactory.decodeResource(getResources(), R.drawable.test);
+        KeypointAnalyse();
+    }
+
+    public void KeypointAnalyse() {
+        Mat rgba = new Mat();
+        Utils.bitmapToMat(inputImage, rgba);
+        MatOfKeyPoint keyPoints = new MatOfKeyPoint();
+        Imgproc.cvtColor(rgba, rgba, Imgproc.COLOR_RGBA2GRAY);
+        detector.detect(rgba, keyPoints);
+        Features2d.drawKeypoints(rgba, keyPoints, rgba);
+        Utils.matToBitmap(rgba, inputImage);
+        imageView.setImageBitmap(inputImage);
     }
 }
-
