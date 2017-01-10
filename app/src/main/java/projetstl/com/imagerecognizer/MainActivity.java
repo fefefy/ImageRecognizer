@@ -52,8 +52,6 @@ public class MainActivity extends Activity {
     private String ImageString;
     private int READ_PERMISSION = 1;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
