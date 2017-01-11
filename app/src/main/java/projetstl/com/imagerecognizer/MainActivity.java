@@ -182,7 +182,6 @@ public class MainActivity extends Activity  {
             Toast.makeText(this, "Problème détecté", Toast.LENGTH_LONG).show();
         }
 
-
     }
 
     public void Analyse() {
