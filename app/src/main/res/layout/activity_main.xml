@@ -45,8 +45,8 @@
         android:id="@+id/Analyse_button"
         android:text="Analyser l'image !"
         android:layout_below="@+id/Pictures_ImageView"
-        android:layout_centerHorizontal="true"
-        android:onClick="Analyse"/>
+        android:layout_centerHorizontal="true"/>
+        //android:onClick="test"/>
 
 
 </RelativeLayout>
