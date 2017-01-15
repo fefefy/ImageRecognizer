@@ -16,7 +16,6 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfKeyPoint;
 import org.opencv.features2d.FeatureDetector;
 import org.opencv.features2d.Features2d;
-import org.opencv.features2d.KeyPoint;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.File;

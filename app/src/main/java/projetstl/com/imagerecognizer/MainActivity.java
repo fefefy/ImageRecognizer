@@ -10,15 +10,21 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfKeyPoint;
+
 import org.opencv.features2d.FeatureDetector;
 import org.opencv.features2d.Features2d;
 import org.opencv.imgproc.Imgproc;
@@ -30,10 +36,11 @@ import java.security.Key;
 
 import static android.R.attr.bitmap;
 import static android.R.attr.start;
+import static projetstl.com.imagerecognizer.R.drawable.church01;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity  {
 
-    static {
+     static {
         System.loadLibrary("opencv_java");
         System.loadLibrary("nonfree");
     }
@@ -47,11 +54,34 @@ public class MainActivity extends Activity {
     private static int LOAD_IMAGE = 1;
     private String ImageString;
     private int READ_PERMISSION = 1;
+    private Handler h = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final Button AnalyseButton = (Button) findViewById(R.id.Analyse_button);
+        AnalyseButton.isClickable();
+        AnalyseButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                System.out.println("Analyse Button : " + AnalyseButton.isPressed());
+                //Delay before Analysing image
+                //Necessary to make the toast work
+                 Runnable myrunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("Bouton pressé : "+AnalyseButton.isPressed());
+                        //Calling Analyse method
+                        Analyse();
+                    }
+                };
+                Toast.makeText(getBaseContext(), "Analyse en cours..." , Toast.LENGTH_SHORT ).show();
+                h.postDelayed(myrunnable,120);
+            }
+        });
     }
 
     //Function to use Camera
@@ -152,14 +182,16 @@ public class MainActivity extends Activity {
             Toast.makeText(this, "Problème détecté", Toast.LENGTH_LONG).show();
         }
 
-
     }
 
-    public void Analyse(View view) {
+    public void Analyse() {
+        System.out.println("Coucou ");
 
         setContentView(R.layout.keypointmatching);
         imageView = (ImageView) this.findViewById(R.id.Analyse_ImageView);
-        inputImage = BitmapFactory.decodeResource(getResources(), R.drawable.test);
+        //inputImage = Bitmap
+        inputImage = BitmapFactory.decodeResource(getResources(), church01);
+        Toast.makeText(this, "Analyse de l'image...", Toast.LENGTH_LONG).show();
         KeypointAnalyse();
     }
 
