@@ -1,7 +1,7 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="test" />
-    <option name="defaultScopeName" value="test" />
-    <option name="SEARCH_SCOPE" value="test" />
+    <option name="customScope" value="File '[app] - ...\app\src\main\java\projetstl\com\imagerecognizerv2\MainActivity.java'" />
+    <option name="defaultScopeName" value="File '[app] - ...\app\src\main\java\projetstl\com\imagerecognizerv2\MainActivity.java'" />
+    <option name="SEARCH_SCOPE" value="File '[app] - ...\app\src\main\java\projetstl\com\imagerecognizerv2\MainActivity.java'" />
   </component>
 </application>
